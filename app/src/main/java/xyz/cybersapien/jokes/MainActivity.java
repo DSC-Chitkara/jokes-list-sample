@@ -3,6 +3,8 @@ package xyz.cybersapien.jokes;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +18,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    List<Joke> jokeList;
+    ArrayList<Joke> jokeList;
     LinearLayout rootLayout;
 
     @Override
@@ -291,9 +293,12 @@ public class MainActivity extends AppCompatActivity {
         jokeList.add(new Joke("Manmeet", "Instructor", "people"));
         jokeList.add(new Joke("Hello", "Hi", "Ana"));
 
-        ListView listView = findViewById(R.id.list_view);
-        JokeAdapter adapter = new JokeAdapter(this, jokeList);
-        listView.setAdapter(adapter);
+//        "https://github.com/DSC-Chitkara/jokes-list-sample"
+
+        RecyclerView recyclerView = findViewById(R.id.list_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        JokeRecyclerAdapter adapter = new JokeRecyclerAdapter(jokeList, this);
+        recyclerView.setAdapter(adapter);
 
     }
 }
